@@ -1,0 +1,33 @@
+<html>
+	<head>
+	  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	  <title>United Field Sample</title>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	   <script src="jUnifiedField.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<p id="united_field">
+		<label for="field">Field</label>
+		<input type="text" name="field" value="" id="field"/>
+	</p>
+	<p>
+		<label for="field" style="position: relative; top: 100;">Field</label>
+		<input type="text" style="position: relative; top: 100;" name="field" value="" id="field"/>
+	</p>
+	<p id="united_field">
+		<label for="field" style="position: absolute; left: 200">Field</label>
+		<input type="text" style="position: absolute; left: 250" name="field" value="" id="field"/>
+	</p>
+	<p >
+		<label for="field" style="position: fixed; left: 400">Field</label>
+		<input type="text" style="position: fixed; left: 450" name="field" value="" id="field"/>
+	</p>
+	<p style="position:relative; top:400">
+	<label for="field">Field</label>
+	<input type="text" name="field" value="" id="field"/>
+	</p>
+	<script type="text/javascript" language="javascript" charset="utf-8">
+	//<![CDATA[
+		$('input').unify();
+	//]]>
+	</script>
+</html>
