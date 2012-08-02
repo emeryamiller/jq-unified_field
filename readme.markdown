@@ -24,3 +24,7 @@ characters.
 The opacity of the label can be modified by changing the `opacity` and
 `focus_opacity` labels.  By default they are `0.8` and `0,4`
 respectively.
+
+##Examples
+The included `base.html` file contains a variety of examples (really
+test cases).
