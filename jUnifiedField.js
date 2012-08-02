@@ -1,5 +1,5 @@
 /*
- * Unify places the label for a field within the field much like hint text.  When the user 
+ * Unify places the label for a field within the field much like hint text.  When the user
  * enters the field, the label text moves to the right, but still within the field, out of
  * the way of the text entered but still visible to identify the purpose of the field.
  */
@@ -15,6 +15,11 @@
 			var field_height_offset = $field.outerHeight() - $field.innerHeight();
 			var starting_position = label_pos.left + field_width_offset + opts.padding_start;
 			var ending_position = starting_position + $field.innerWidth() - $label.outerWidth() - opts.padding_end;
+      var current_length = 0;
+      var read_value = $field.val;
+      var tagname = $field.get(0).tagName.toLowerCase();
+      if (tagname == 'div') { read_value = $field.text; }
+      $field.parent().css({ position: 'relative' })
 			$field.css({
 				position: 'absolute',
 				top: label_pos.top,
@@ -26,11 +31,20 @@
 					opacity: opts.focus_opacity
 				}, opts.focus_speed);
 			}).blur(function() {
-				$label.stop().animate({
-					left: starting_position,
-					opacity: opts.opacity
-				}, opts.blur_speed);
-			});
+        if (!current_length) {
+          $label.stop().animate({
+            left: starting_position,
+            opacity: opts.opacity
+          }, opts.blur_speed);
+        }
+      }).keyup(function() {
+        current_length = read_value.call($field).length
+        if (current_length > opts.vanishing_length) {
+          $label.hide();
+        } else {
+          $label.show();
+        }
+      });
 			$label.css({
 				position: 'absolute',
 				top: label_pos.top + field_height_offset,
@@ -47,6 +61,7 @@
 		opacity: 0.8,
 		focus_opacity: 0.4,
 		padding_start: 1,
-		padding_end: 3
+		padding_end: 3,
+    vanishing_length: 5
 	}
 })(jQuery);
